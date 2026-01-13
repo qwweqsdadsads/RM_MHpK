@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Environmental Photo Carousel</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+.carousel {
+  position: relative;
+  max-width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  padding: 8px 12px;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 22px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+</style>
+</head>
+
+<body>
+
+<div class="carousel">
+  <div class="slide">
+    <img src="https://via.placeholder.com/800x400?text=Air+Quality+Monitoring">
+    <div class="caption">Air quality monitoring station – updated weekly</div>
+  </div>
+
+  <div class="slide">
+    <img src="https://via.placeholder.com/800x400?text=Water+Sampling">
+    <div class="caption">Water sampling location near residential areas</div>
+  </div>
+
+  <div class="slide">
+    <img src="https://via.placeholder.com/800x400?text=Noise+Measurements">
+    <div class="caption">Noise level measurements in urban zones</div>
+  </div>
+
+  <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
+  <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
+</div>
+
+<script>
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+  slides.forEach(slide => slide.style.display = 'none');
+  slides[index].style.display = 'block';
+}
+
+function changeSlide(step) {
+  slideIndex = (slideIndex + step + slides.length) % slides.length;
+  showSlide(slideIndex);
+}
+
+function autoRotate() {
+  changeSlide(1);
+}
+
+showSlide(slideIndex);
+setInterval(autoRotate, 5000);
+</script>
+
+</body>
+</html>
