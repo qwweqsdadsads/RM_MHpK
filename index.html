@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Environmental Photo Carousel</title>
+<title>Mini Environmental Carousel</title>
 
 <style>
 body {
@@ -12,70 +12,90 @@ body {
   background: #f4f6f8;
 }
 
+/* Mini Carousel Container */
 .carousel {
   position: relative;
-  max-width: 100%;
-  height: 260px;
+  width: 10%;          /* 10% of page width */
+  padding-top: 25%;    /* height = 25% of width */
   overflow: hidden;
+  margin: 20px;
+  border: 1px solid #ccc; /* optional border */
 }
 
+/* Slides */
 .slide {
-  display: none;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
 
 .slide img {
   width: 100%;
-  height: 260px;
+  height: 100%;
+  display: block;
   object-fit: cover;
 }
 
+/* Active slide */
+.slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+/* Caption (tiny) */
 .caption {
   position: absolute;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0,0,0,0.55);
   color: #fff;
-  padding: 8px 12px;
+  padding: 2px 4px;
   width: 100%;
-  font-size: 14px;
+  font-size: 8px;
+  text-align: center;
 }
 
-/* Arrows */
+/* Arrow buttons (small) */
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
   color: white;
   border: none;
-  font-size: 22px;
-  padding: 6px 10px;
+  font-size: 10px;
+  padding: 2px 4px;
   cursor: pointer;
+  z-index: 10;
 }
 
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
+.arrow.left { left: 2px; }
+.arrow.right { right: 2px; }
+
 </style>
 </head>
 
 <body>
 
 <div class="carousel">
-  <div class="slide">
-    <img src="https://via.placeholder.com/800x400?text=Air+Quality+Monitoring">
-    <div class="caption">Air quality monitoring station – updated weekly</div>
+  <div class="slide active">
+    <img src="https://via.placeholder.com/800x400?text=Air+Quality+Monitoring" alt="Air Quality Monitoring">
+    <div class="caption">Air quality monitoring</div>
   </div>
 
   <div class="slide">
-    <img src="https://via.placeholder.com/800x400?text=Water+Sampling">
-    <div class="caption">Water sampling location near residential areas</div>
+    <img src="https://via.placeholder.com/800x400?text=Water+Sampling" alt="Water Sampling">
+    <div class="caption">Water sampling</div>
   </div>
 
   <div class="slide">
-    <img src="https://via.placeholder.com/800x400?text=Noise+Measurements">
-    <div class="caption">Noise level measurements in urban zones</div>
+    <img src="https://via.placeholder.com/800x400?text=Noise+Measurements" alt="Noise Measurements">
+    <div class="caption">Noise measurements</div>
   </div>
 
+  <!-- Arrow buttons -->
   <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
   <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
 </div>
@@ -85,8 +105,10 @@ let slideIndex = 0;
 const slides = document.querySelectorAll('.slide');
 
 function showSlide(index) {
-  slides.forEach(slide => slide.style.display = 'none');
-  slides[index].style.display = 'block';
+  slides.forEach((slide,i) => {
+    slide.classList.remove('active');
+    if (i===index) slide.classList.add('active');
+  });
 }
 
 function changeSlide(step) {
@@ -94,12 +116,11 @@ function changeSlide(step) {
   showSlide(slideIndex);
 }
 
-function autoRotate() {
-  changeSlide(1);
-}
-
+// Show first slide
 showSlide(slideIndex);
-setInterval(autoRotate, 5000);
+
+// Autoplay every 5 seconds
+setInterval(() => changeSlide(1), 5000);
 </script>
 
 </body>
