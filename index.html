@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini Environmental Carousel</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+/* Mini Carousel Container */
+.carousel {
+  position: relative;
+  width: 100%;          /* 10% of page width */
+  padding-top: 5%;    /* height = 5% of width */
+  overflow: hidden;
+  margin: 20px;
+  border: 1px solid #ccc; /* optional border */
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Active slide */
+.slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+/* Caption (tiny) */
+.caption {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  padding: 2px 4px;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Arrow buttons (small) */
+.arrow {
+  position: absolute;
+  top: 100%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 14px;
+  padding: 2px 4px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrow.left { left: 2px; }
+.arrow.right { right: 2px; }
+
+</style>
+</head>
+
+<body>
+
+<div class="carousel">
+  <div class="slide active">
+    <img src="https://https://github.com/qwweqsdadsads/RM_MHpK/blob/main/Air%20pollution.webp" alt="Luftföroreningar">
+    <div class="caption">Luftföroreningar</div>
+  </div>
+
+  <div class="slide">
+    <img src="https://github.com/qwweqsdadsads/RM_MHpK/blob/main/Broparken02.webp/" alt="Grönområden">
+    <div class="caption">Grönområden</div>
+  </div>
+
+  <div class="slide">
+    <img src="https://github.com/qwweqsdadsads/RM_MHpK/blob/main/Environmental%20icons.webp/" alt="Trafikbuller">
+    <div class="caption">Trafikbuller</div>
+  </div>
+
+  <!-- Arrow buttons -->
+  <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
+  <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
+</div>
+
+<script>
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+  slides.forEach((slide,i) => {
+    slide.classList.remove('active');
+    if (i===index) slide.classList.add('active');
+  });
+}
+
+function changeSlide(step) {
+  slideIndex = (slideIndex + step + slides.length) % slides.length;
+  showSlide(slideIndex);
+}
+
+// Show first slide
+showSlide(slideIndex);
+
+// Autoplay every 20 seconds
+setInterval(() => changeSlide(1), 5000);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
