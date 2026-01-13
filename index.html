@@ -15,7 +15,7 @@ body {
 /* Mini Carousel Container */
 .carousel {
   position: relative;
-  width: 10%;          /* 10% of page width */
+  width: 20%;          /* 10% of page width */
   padding-top: 5%;    /* height = 5% of width */
   overflow: hidden;
   margin: 20px;
@@ -27,14 +27,14 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 100%;
   opacity: 0;
   transition: opacity 0.8s ease;
 }
 
 .slide img {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   display: block;
   object-fit: cover;
 }
@@ -52,7 +52,7 @@ body {
   background: rgba(0,0,0,0.55);
   color: #fff;
   padding: 2px 4px;
-  width: 50%;
+  width: 100%;
   font-size: 14px;
   text-align: center;
 }
@@ -60,7 +60,7 @@ body {
 /* Arrow buttons (small) */
 .arrow {
   position: absolute;
-  top: 50%;
+  top: 100%;
   transform: translateY(-50%);
   background: rgba(0,0,0,0.5);
   color: white;
@@ -125,6 +125,7 @@ setInterval(() => changeSlide(1), 5000);
 
 </body>
 </html>
+
 
 
 
